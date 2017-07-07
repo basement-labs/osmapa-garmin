@@ -1,0 +1,165 @@
+
+# Remove access=yes from highways.
+highway=* & access=yes { delete access }
+# By default, ways are accessible by the highest allowed mode of
+# transportation, and thus access=yes should be redundant.
+# However, sometimes cycleways may be tagged access=destination or similar,
+# to allow cars and motorcycles. In mkgmap, 'access' specifies the
+# generic access rule, and it can be overridden by more specific tags:
+# foot, bicycle, motorcar, motorcycle.
+
+highway=*  {name '${maxspeed}' | '';} 
+
+
+# Hide unaccessible tunnels
+highway=* & tunnel=yes & (access=private|access=no)
+& foot!=* & bicycle!=* {delete highway;delete junction}
+# Disable dead-end-checks for unaccessible oneways
+highway=* & oneway=yes & (access=private|access=no)
+{add mkgmap:dead-end-check=false}
+# Validation-like checks (uncomment to enable)
+#highway=motorway_link & oneway!=yes & oneway!=no { echo "motorway_link lacks oneway" }
+
+
+# Flag unpaved roads.
+highway=*
+& (surface=cobblestone | surface=compacted | surface=dirt |
+   surface=earth | surface=grass | surface=grass_paver |
+   surface=gravel | surface=grit | surface=ground | surface=mud |
+   surface=pebblestone | surface=sand | surface=unpaved |
+   mtb:scale=* |
+   tracktype ~ 'grade[2-6]' |
+   smoothness ~ '.*(bad|horrible|impassable)' |
+   sac_scale ~ '.*(mountain|alpine)_hiking' |
+   sport=via_ferrata)
+{ add mkgmap:unpaved=1 }
+(highway=bridleway | highway=path | highway=track | highway=unsurfaced)
+& surface!=* & tracktype!=* & smoothness!=* & sac_scale!=*
+{ add mkgmap:unpaved=1 }
+
+# Convert generic path to most specific
+highway=footway & snowplowing!=no
+& (bicycle=designated|bicycle=official)
+{set highway=cycleway; set bicycle=yes}
+highway=path & snowplowing!=no
+& (bicycle=designated|bicycle=official)
+{set highway=cycleway; set bicycle=yes}
+
+
+
+
+
+# Roundabouts
+#ROGAL
+junction=roundabout & highway=trunk {name '${maxspeed}'} [0x02 road_class=3 road_speed=2 resolution 22]
+
+junction=roundabout & highway=primary {name '${maxspeed}'} [0x03 road_class=3 road_speed=2 resolution 22]
+
+junction=roundabout & highway=secondary {name '${maxspeed}'} [0x04 road_class=2 road_speed=2 resolution 22]
+
+junction=roundabout & highway=tertiary {name '${maxspeed}'}[0x05 road_class=1 road_speed=1 resolution 22]
+
+junction=roundabout & highway=unclassified {name '${maxspeed}'}[0x06 road_class=1 road_speed=1 resolution 22]
+
+junction=roundabout & highway=residential {name '${maxspeed}'} [0x06 road_class=1 road_speed=1 resolution 22]
+
+junction=roundabout & highway=service {name '${maxspeed}'} [0x06 road_class=0 road_speed=0 resolution 22]
+
+junction=roundabout & highway=road {name '${maxspeed}'} [0x06 road_class=0 road_speed=0 resolution 22]
+
+junction=roundabout {name '${maxspeed}'} [0x06 road_class=0 road_speed=1 resolution 22]
+
+
+
+# Treat disused ways as highway=service, but at lower road_speed.
+highway=* & disused=yes {name '${maxspeed}'} [0x07 road_class=0 road_speed=1 resolution 22]
+
+# Set highway names to include the reference if there is one
+
+
+
+
+# AUTOSTRADY
+highway=motorway {add oneway = yes; add bicycle = no; add foot = no; name '${maxspeed}' } [0x01 road_class=4 road_speed=7 resolution 22]
+
+highway=motorway_link {add oneway = yes; add bicycle = no; add foot = no; name '${maxspeed}' }  [0x01 road_class=4 road_speed=6 resolution 22]
+
+#DROGI SZYBKIEGO RUCHU
+highway=trunk {add oneway = yes; add bicycle = no; add foot = no; name '${maxspeed}' } [0x02 road_class=4 road_speed=6 resolution 22]
+
+highway=trunk_link {add oneway = yes; add bicycle = no; add foot = no; name '${maxspeed}' }  [0x02 road_class=4 road_speed=5 resolution 22]
+
+
+# to są jakieś niepolskie drogi podobne do dróg szybkiego ruchu
+highway=* & highway!=construction & motorroad=yes  {add bicycle = no; add foot = no}
+highway=* & highway!=construction & motorroad=yes {name '${maxspeed}'} [0x02 road_class=4 road_speed=4 resolution 22]
+
+
+highway=primary {name '${maxspeed}'} [0x03 road_class=3 road_speed=5 resolution 22]
+
+highway=primary_link {name '${maxspeed}'} [0x03 road_class=3 road_speed=3 resolution 22]
+
+                                                                                      
+#DROGI SECONDARY
+
+highway=secondary  {name '${maxspeed}'}  [0x04 road_class=2 road_speed=5 resolution 22]
+
+highway=secondary_link {name '${maxspeed}'} [0x04 road_class=2 road_speed=2 resolution 22]
+
+
+#DROGI TERTIARY
+
+highway=tertiary {name '${maxspeed}'} [0x05 road_class=1 road_speed=4 resolution 22]
+highway=tertiary_link {name '${maxspeed}'} [0x05 road_class=1 road_speed=2 resolution 22]
+
+#RESIDENTIAL, LIVING STREET
+
+highway=living_street {name '${maxspeed}'} [0x06 road_class=0 road_speed=1 resolution 22 ]
+highway=residential {name '${maxspeed}'} [0x06 road_class=0 road_speed=2 resolution 22]
+
+
+#DROGI INNE
+
+highway=minor {name '${maxspeed}'} [0x06 road_class=1 road_speed=3 resolution 22]
+
+highway=unclassified {name '${maxspeed}'} [0x06 road_class=0 road_speed=3 resolution 22]
+
+highway=road { add mkgmap:dead-end-check = false;name '${maxspeed}'}[0x06 road_class=0 road_speed=1  resolution 22]
+
+
+highway=service {name '${maxspeed}'} [0x07 road_class=0 road_speed=2 resolution 22]
+
+
+highway=track & tracktype ~ 'grade[3-6]' {name '${maxspeed}'}  [0x0e road_class=0 road_speed=1 resolution 22]
+highway=track {name '${maxspeed}'} [0x0a road_class=0 road_speed=1 resolution 22]
+highway=unsurfaced {name '${maxspeed}'} [0x0a road_class=0 road_speed=1 resolution 22]
+
+
+# Mop up any unrecognised highway types
+#highway=* & area!=yes & highway!=construction & construction!=* & highway!=proposed  {name '${maxspeed}'} [0x07 road_class=0 road_speed=0 resolution 22]
+
+#natural=coastline [0x15 resolution 15]
+
+
+# GRANICE
+
+
+# The following boundary styles are after the highway rules because ways
+# are frequently tagged with both and we want the highway to take priority.
+
+#boundary=administrative { name '${mkgmap:boundary_name}' }
+
+#boundary=administrative & admin_level<3 [0x1e resolution 16]
+#boundary=administrative & admin_level<5 [0x1d resolution 23]
+#boundary=administrative & admin_level<8 [0x1c resolution 24]
+#boundary=administrative & admin_level<9 [0x1c resolution 22]
+#boundary=administrative [0x1c resolution 24]
+
+#renderujemy tylko granice wojewodztw i krajow
+
+#boundary=administrative & admin_level=2 [0x1e resolution 15]
+#boundary=administrative & admin_level=4 [0x1c resolution 18-15]
+
+#boundary=administrative & admin_level=6 [0x1d resolution 24]
+#boundary=national [0x1c resolution 15]
+#boundary=political [0x1c resolution 15]

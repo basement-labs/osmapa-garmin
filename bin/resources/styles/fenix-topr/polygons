@@ -1,0 +1,4 @@
+
+natural=water | natural=lake [0x3c resolution 20]
+landuse=reservoir [0x3c resolution 20]
+water=river [0x46 resolution 20] 

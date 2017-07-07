@@ -1,0 +1,88 @@
+# -------------------------------------------------------------------
+# This is the default mkgmap style file for converting OSM nodes
+# into Garmin POIs.
+# Any line prefaced with # is a comment and will not be applied.
+# Each line is a rule, of the generalised format:
+#  OSM_tag(s)_to_match  [Garmin_type_code resolution]
+# See http://wiki.openstreetmap.org/wiki/Mkgmap/help/style_rules
+# and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
+# for more information.
+
+
+
+
+
+
+
+#20 - 2 km
+#22 - 500m
+
+place=city & mkgmap:miasto_wojewodzkie=yes [0x0400 resolution 16]
+place=town & mkgmap:miasto_powiatowe=yes [0x0400 resolution 18]
+#place=city & mkgmap:miasto_powiatowe=yes [0x0600 resolution 20]
+
+place=city  [0x0400 resolution 20]
+place=town  [0x0400 resolution 20]
+place=village [0x0400 resolution 20]
+place=hamlet [0x0400 resolution 20]
+
+#place=suburb [0x0800 resolution 24]
+
+#kategoria 'entertainment'
+amenity=bar [0x2d02 resolution 24]
+amenity=pub [0x2d02 resolution 24]
+
+shop=convenience [0x2e02 resolution 24] 
+shop=supermarket [0x2e02 resolution 24]
+#shop=bicycle [0x2f13 resolution 24]
+
+
+amenity=cafe {name '${name}' | 'kawiarnia' } [0x2a00 resolution 24]
+amenity=drinking_water {name '${name}' | 'woda pitna' } [0x2a00 resolution 24]
+amenity=fast_food {name '${name}' | 'fast food' } [0x2a00 resolution 24]
+amenity=restaurant {name '${name}' | 'restauracja' }[0x2a00 resolution 24]
+
+
+#amenity=telephone [0x2f12 resolution 24 ]
+#amenity=toilets [0x4e00 resolution 24 ]
+
+# SLUZBA ZDROWIA
+
+healthcare=hospital | amenity=hospital | amenity=clinic [0x3002 resolution 24]
+healthcare=* | amenity=dentist | amenity=doctors [0x3002 resolution 24]
+amenity=pharmacy {name '${name}' | 'Apteka' } [0x3002 resolution 24]
+
+
+tourism=attraction | (historic=* & historic!=fire_hydrant) [0x2c04 resolution 24]
+
+railway=halt [0x2f08 resolution 22]
+railway=station [0x2f08 resolution 22]
+public_transport=station  [0x2f08 resolution 22]
+amenity=bus_station [0x2f08 resolution 23]
+
+
+# Noclegi
+
+tourism=hotel | tourism=motel {name '${name}' | 'Hotel'} [0x2b01 resolution 24]
+tourism=hostel  {name '${name}' | 'Hostel'} [0x2b01 resolution 24]
+tourism=guest_house {name '${name}' | 'Kwatery'} [0x2b01 resolution 24]
+tourism=camp_site | tourism=caravan_site {name '${name}' | 'Camping'} [0x2b01 resolution 24]
+tourism=alpine_hut | tourism=lean_to | amenity=shelter | tourism=wilderness_hut  {name '${name}' | 'Schronienie/zadaszenie'} [0x2b01 resolution 24]  
+
+
+amenity=atm { name '${operator}: ${name}' | '${name}' | '${operator}' | 'Bankomat'} [0x2f06 resolution 24]
+
+#place=island [0x650c resolution 24]
+
+natural=peak {name '${name|def:}${ele|height:m=>ft|def:}' } [0x6616 resolution 20]
+
+#labele do zbiornikow wodnych
+
+natural=water | natural=lake [0x6616 resolution 24]
+landuse=reservoir [0x6616 resolution 24]
+water=river [0x6616 resolution 24] 
+
+<finalize>
+
+name=* { name '${name}' }
+

@@ -1,0 +1,154 @@
+
+
+#zabezpieczenie przed posranym tagowaniem
+
+type=route & route=bicycle & colour!=* & (name=czerwony | ref=czerwony)
+{
+  add colour=red;
+}
+
+type=route & route=bicycle & colour!=* & (name=niebieski | ref=niebieski)
+{
+  add colour=blue;
+}
+
+type=route & route=bicycle & colour!=* & (name=zielony | ref=zielony)
+{
+  add colour=green;
+}
+
+type=route & route=bicycle & colour!=* & (name=czarny | ref=czarny)
+{
+  add colour=black;
+}
+
+
+type=route & route=bicycle & colour!=* & (name=żółty | name=zolty | ref=żółty | ref=zolty)
+{
+  add colour=yellow;
+}
+
+
+# kolor niebieski
+type=route & route=bicycle &  ( colour = blue | colour='#0000ff' | colour='#0000FF') 
+{
+
+  set x_ref_blue='${name} (${ref})' | '${network} ${ref}'  | '${ref}'| '${name}' | '${network}';
+  set x_processed=1;
+  
+  apply {set mkgmap:route_type_bicycle=yes; set mkgmap:route_name='$(mkgmap:route_name)/${x_ref_blue}' |'${x_ref_blue}';  set mkgmap:bicycle_route_blue_name='${x_ref_blue}'; set mkgmap:bicycle_colour_blue=yes ;}
+}
+
+
+#kolor czerwony
+
+type=route & route=bicycle &  ( colour = red | colour='#ff0000' | colour='#FF0000')
+{
+
+   set x_ref_red='${name} (${ref})' | '${network} ${ref}'  | '${ref}'| '${name}' | '${network}';
+   set x_processed=1;
+  
+  apply {set mkgmap:route_type_bicycle=yes; set mkgmap:route_name='$(mkgmap:route_name)/${x_ref_red}' |'${x_ref_red}'; set mkgmap:bicycle_route_red_name='${x_ref_red}';  set mkgmap:bicycle_colour_red=yes}
+}
+
+#kolor zielony
+
+type=route & route=bicycle &  ( colour = green | colour='#00ff00' | colour='#00FF00')
+{
+
+   set x_ref_green='${name} (${ref})' | '${network} ${ref}'  | '${ref}'| '${name}' | '${network}';
+   set x_processed=1;
+  
+  apply {set mkgmap:route_type_bicycle=yes;  set mkgmap:route_name='$(mkgmap:route_name)/${x_ref_green}' |'${x_ref_green}'; set mkgmap:bicycle_route_green_name='${x_ref_green}'; set mkgmap:bicycle_colour_green=yes}
+}
+
+#kolor zolty
+
+type=route & route=bicycle &  ( colour = yellow | colour='#FFFF00' | colour='#ffff00')
+{
+
+   set x_ref_yellow='${name} (${ref})' | '${network} ${ref}'  | '${ref}'| '${name}' | '${network}';
+   set x_processed=1;
+  
+  apply {set mkgmap:route_type_bicycle=yes; set mkgmap:route_name='$(mkgmap:route_name)/${x_ref_yellow}' |'${x_ref_yellow}'; set mkgmap:bicycle_route_yellow_name='${x_ref_yellow}'; set mkgmap:bicycle_colour_yellow=yes}
+}
+
+
+#kolor czarny
+
+type=route & route=bicycle &  ( colour = black | colour='#000000')
+{
+
+   set x_ref_black='${name} (${ref})' | '${network} ${ref}'  | '${ref}'| '${name}' | '${network}';
+   set x_processed=1;
+  
+  apply {set mkgmap:route_type_bicycle=yes;  set mkgmap:route_name='$(mkgmap:route_name)/${x_ref_black}' |'${x_ref_black}'; set mkgmap:bicycle_route_black_name='${x_ref_black}';  set mkgmap:bicycle_colour_black=yes}
+}
+
+
+# cała reszta
+
+type=route & route=bicycle  & x_processed!=*
+{
+
+     set x_ref_unknown='${name} (${ref})' | '${network} ${ref}'  | '${ref}'| '${name}' | '${network}';
+  
+  apply { set mkgmap:route_type_bicycle=yes;  set mkgmap:route_name='$(mkgmap:route_name)/${x_ref_unknown}' |'${x_ref_unknown}'; set mkgmap:bicycle_route_unknown_name='${x_ref_unknown}'; set mkgmap:bicycle_route_unknown_network='${network}'; set mkgmap:bicycle_colour_unknown=yes; set mkgmap:bicycle_network='${network}';}
+  
+}
+
+
+
+###################
+## SZLAKI PIESZE ##
+###################
+
+#szlak pieszy czerwony
+
+type=route & (route=hiking | route=foot) & ( colour = red | colour='#ff0000' | colour='#FF0000')
+{
+
+   set x_ref_red='${name} (${distance})' | '${name}' | '${network} (${distance})' | '${network}';
+  
+  apply {set mkgmap:route_type_hiking=yes;  set mkgmap:route_name='$(mkgmap:route_name)/${x_ref_red}' |'${x_ref_red}'; set mkgmap:hiking_route_red_name='${x_ref_red}'; set mkgmap:hiking_colour_red=yes}
+}
+
+#szlak pieszy niebieski
+
+type=route & (route=hiking | route=foot) & ( colour = blue | colour='#0000ff' | colour='#0000FF')
+{
+
+   set x_ref_blue='${name} (${distance})' | '${name}' | '${network} (${distance})' | '${network}';
+  
+  apply {set mkgmap:route_type_hiking=yes;  set mkgmap:route_name='$(mkgmap:route_name)/${x_ref_blue}' |'${x_ref_blue}'; set mkgmap:hiking_route_blue_name='${x_ref_blue}'; set mkgmap:hiking_colour_blue=yes}
+}
+
+#szlak pieszy zielony
+
+type=route & (route=hiking | route=foot) & ( colour = green | colour='#00ff00' | colour='#00FF00')
+{
+
+   set x_ref_green='${name} (${distance})' | '${name}' | '${network} (${distance})' | '${network}';
+  
+  apply {set mkgmap:route_type_hiking=yes;  set mkgmap:route_name='$(mkgmap:route_name)/${x_ref_green}' |'${x_ref_green}'; set mkgmap:hiking_route_green_name='${x_ref_green}'; set mkgmap:hiking_colour_green=yes}
+}
+
+#szlak pieszy zółty
+
+type=route & (route=hiking | route=foot) & ( colour = yellow | colour='#FFFF00' | colour='#ffff00' )
+{
+
+   set x_ref_yellow='${name} (${distance})' | '${name}' | '${network} (${distance})' | '${network}';
+  
+  apply {set mkgmap:route_type_hiking=yes;  set mkgmap:route_name='$(mkgmap:route_name)/${x_ref_yellow}' |'${x_ref_yellow}'; set mkgmap:hiking_route_yellow_name='${x_ref_yellow}'; set mkgmap:hiking_colour_yellow=yes}
+}
+
+#szlak pieszy czarny
+
+type=route & (route=hiking | route=foot) & ( colour = black | colour = '#000000')
+{
+
+   set x_ref_black='${name} (${distance})' | '${name}' | '${network} (${distance})' | '${network}';
+  
+  apply {set mkgmap:route_type_hiking=yes;  set mkgmap:route_name='$(mkgmap:route_name)/${x_ref_black}' |'${x_ref_black}'; set mkgmap:hiking_route_black_name='${x_ref_black}'; set mkgmap:hiking_colour_black=yes}
+}

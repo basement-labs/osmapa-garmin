@@ -1,0 +1,6 @@
+# LASY
+
+landuse=wood & ref=* { name '${ref}' } [0x50 resolution 23]
+landuse=forest & ref=* { name '${ref}' } [0x50 resolution 23]
+natural=wood & ref=* { name '${ref}' } [0x50 resolution 23]
+

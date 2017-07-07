@@ -1,0 +1,68 @@
+
+
+## WARSTWICE
+
+# Contours take their name from the elevation setting.
+contour=elevation & contour_ext=elevation_minor { name '${ele|conv:m=>ft}'; } [0x20 resolution 24]
+
+contour=elevation & contour_ext=elevation_medium { name '${ele|conv:m=>ft}'; } [0x21 resolution 22]
+contour=elevation & contour_ext=elevation_major { name '${ele|conv:m=>ft}'; } [0x22 resolution 20]
+contour=elevation | contour_ext=elevation { name '${ele|conv:m=>ft}'; } [0x21 resolution 20]
+
+
+
+#trasa rowerowa niebieska
+mkgmap:route_type_bicycle=yes &  (mkgmap:bicycle_colour_blue=yes)  [0x11011   resolution 20 continue with_actions]
+
+
+#trasa rowerowa czerwona
+mkgmap:route_type_bicycle=yes &  (mkgmap:bicycle_colour_red=yes)  [0x11010   resolution 20 continue with_actions]
+
+
+#trasa rowerowa zielona
+mkgmap:route_type_bicycle=yes &  (mkgmap:bicycle_colour_green=yes)  [0x11012  resolution 20 continue with_actions]
+
+#trasa rowerowa zolta
+mkgmap:route_type_bicycle=yes &  (mkgmap:bicycle_colour_yellow=yes)  [0x11013   resolution 20 continue with_actions]
+
+#trasa rowerowa czarna
+mkgmap:route_type_bicycle=yes &  (mkgmap:bicycle_colour_black=yes)  [0x11014 resolution 20 continue with_actions]
+
+
+
+#bez rozpoznanego tagu z kolorem - RCN i NCN - niebieski
+mkgmap:route_type_bicycle=yes & (mkgmap:bicycle_unknown_rcn=yes | mkgmap:bicycle_unknown_ncn=yes) [0x11011  resolution 20 continue with_actions]
+
+# bez rozpoznanego tagu z kolorem - LCN - czerwony
+
+mkgmap:route_type_bicycle=yes & mkgmap:bicycle_unknown_lcn=yes   [0x11010   resolution 20 continue with_actions]
+
+
+
+#trasa piesza niebieska
+mkgmap:route_type_hiking=yes & (mkgmap:hiking_colour_blue=yes) [0x11016   resolution 20 continue with_actions]
+
+#trasa piesza zolta
+mkgmap:route_type_hiking=yes &  (mkgmap:hiking_colour_yellow=yes) [0x1101a   resolution 20 continue with_actions]
+
+#trasa piesza zielona
+mkgmap:route_type_hiking=yes & (mkgmap:hiking_colour_green=yes) [0x11019   resolution 20 continue with_actions]
+
+#trasa piesza czerwona
+mkgmap:route_type_hiking=yes &  (mkgmap:hiking_colour_red=yes) [0x11017   resolution 20 continue with_actions]
+
+#trasa piesza czarna
+mkgmap:route_type_hiking=yes & (mkgmap:hiking_colour_black=yes)  [0x11018   resolution 20 continue with_actions]
+
+
+#to jest pod routing
+#routing wylaczony, to zostaje tylko dla wyswietlania nazw
+#highway=* & (mkgmap:route_type_bicycle=yes | mkgmap:route_type_hiking=yes) {name '${mkgmap:route_name}';} [ 0x01 road_class=1 road_speed=1 resolution 20 continue with_actions]
+
+highway=* & (mkgmap:route_type_bicycle=yes | mkgmap:route_type_hiking=yes) {name '${mkgmap:route_name}';} [ 0x01 resolution 20 continue with_actions]
+
+
+<finalize>
+
+mkgmap:route_type_bicycle=yes {  set mkgmap:bicycle=yes}
+mkgmap:route_type_hiking=yes {set mkgmap:foot=yes}

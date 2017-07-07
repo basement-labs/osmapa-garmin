@@ -1,0 +1,424 @@
+﻿
+.POINT
+
+; Cities arranged by population
+0x0100	Large city (over 10M)
+0x0200	Large city (5-10M)
+0x0300	Large city (2-5M)
+0x0400	Large city (1-2M)
+0x0500	Medium city (0.5-1M)
+0x0600	Medium city (200-500K)
+0x0700	Medium city (100-200K)
+0x0800	Small city (50-100K)
+0x0900	Small city (20-50K)
+0x0a00	Small city/town (10-20K)
+0x0b00	Small city/town (5-10K)
+0x0c00	Settlement (2-5K)
+0x0d00	Settlement (1-2K)
+0x0e00	Settlement (500-1K)
+0x0f00	Settlement (200-500)
+0x1000	Settlement (100-200)
+0x1100	Settlement (less 100)
+
+; Labels without icons
+0x1400	Name of major country
+0x1500	Name of minor country
+0x1e00	Name of province/region
+0x1f00	Name of county/parish
+0x2800	Label
+
+; Marine features
+0x1200	Marina with facilities
+0x1300	Marine unknown
+
+; NOTE: the marine navigation POIs listed below are automaticaly 
+; duplicated to point codes 0x16??-0x1b??.
+0x1600	Navaid
+0x1601	Fog horn
+0x1602	Radio beacon
+0x1603	Racon
+0x1604	Daybeacon, red triangle
+0x1605	Daybeacon, green square
+0x1606	Daybeacon, white diamond
+0x1607	Unlit navaid, white
+0x1608	Unlit navaid, red
+0x1609	Unlit navaid, green
+0x160a	Unlit navaid, black
+0x160b	Unlit navaid, yellow/amber
+0x160c	Unlit navaid, orange
+0x160d	Unlit navaid, multi colored
+0x160e	Navaid, unknown
+0x160f	Navaid, white
+0x1610	Navaid, red
+0x1611	Navaid, green
+0x1612	Navaid, yellow/amber
+0x1613	Navaid, orange
+0x1614	Navaid, violet
+0x1615	Navaid, blue
+0x1616	Navaid, multi colored
+
+0x1c00	Unclassified obstruction
+0x1c01	Visible wreck
+0x1c02	Submerged wreck, dangerous
+0x1c03	Submerged wreck, non-dangerous
+0x1c04	Wreck, cleared by wire-drag
+0x1c05	Obstr., visible at high water
+0x1c06	Obstruction, awash
+0x1c07	Obstruction, submerged
+0x1c08	Obstr., cleared by wire-drag
+0x1c09	Rock, awash
+0x1c0a	Rock, submerged at low water
+0x1c0b	Possible grounding risk
+
+; Tide table prediction used in marine maps
+0x1d00	Tide prediction
+
+; NOTE: "HW Exit" is highway infrastructure complex 
+; object (gas station + car wash + motel + WC + dining + etc)
+0x2000	HW Exit
+0x2100	HW Exit with facilities
+0x210f	HW Exit (service)
+0x2200	HW Exit (WC)
+0x2300	HW Exit (convenience store)
+0x2400	HW Exit (weight station)
+0x2500	HW Exit (toll booth)
+0x2600	HW Exit (information)
+0x2700	HW Exit
+
+0x2900	Other/Uncategorized business
+
+0x2a00	Dining
+0x2a01	Dining (American)
+0x2a02	Dining (Asian)
+0x2a03	Dining (barbecue)
+0x2a04	Dining (Chinese)
+0x2a05	Dining (Deli/Bakery)
+0x2a06	Dining (international)
+0x2a07	Fast food
+0x2a08	Dining (Italian)
+0x2a09	Dining (Mexican)
+0x2a0a	Dining (pizza)
+0x2a0b	Dining (sea food)
+0x2a0c	Dining (steak/grill)
+0x2a0d	Dining (bagel/donut)
+0x2a0e	Dining (cafe/diner)
+0x2a0f	Dining (French)
+0x2a10	Dining (German)
+0x2a11	Dining (British Isles)
+0x2a12	Special food products
+
+0x2b00	Lodging
+0x2b01	Hotel/Motel
+0x2b02	Bed&Breakfast inn
+0x2b03	Camping/Recreational vehicle park
+0x2b04	Resort hotel
+
+0x2c00	Attraction
+0x2c01	Amusement/Theme park
+0x2c02	Museum/Historical
+0x2c03	Library
+0x2c04	Landmark
+0x2c05	School
+0x2c06	Park/Garden
+0x2c07	Zoo/Aquarium
+0x2c08	Arena/Track
+0x2c09	Hall/Auditorium
+0x2c0a	Winery
+0x2c0b	Place of worship
+
+0x2d00	Entertainment
+0x2d01	Live theatre
+0x2d02	Bar/Nightclub
+0x2d03	Cinema
+0x2d04	Casino
+0x2d05	Golf course
+0x2d06	Skiing center/resort
+0x2d07	Bowling center
+0x2d08	Ice skating
+0x2d09	Swimming pool
+0x2d0a	Sports/Fitness Center
+0x2d0b	Public sports airport
+
+0x2e00	Shopping
+0x2e01	Department store
+0x2e02	Grocery store
+0x2e03	General merchandiser
+0x2e04	Shopping center
+0x2e05	Pharmacy
+0x2e06	Convenience store
+0x2e07	Apparel
+0x2e08	House and garden
+0x2e09	Home furnishing
+0x2e0a	Speciality retail
+0x2e0b	Computer/Software
+
+0x2f00	Generic services
+0x2f01	Auto fuel
+0x2f02	Auto rental
+0x2f03	Auto repair
+0x2f04	Air transportation
+0x2f05	Post office
+0x2f06	Bank/ATM
+0x2f07	Dealer/Auto parts
+0x2f08	Ground transportation
+0x2f09	Marina/Boat repair & storage
+0x2f0a	Wrecker service
+0x2f0b	Parking
+0x2f0c	Rest area/Tourist info
+0x2f0d	Automobile club
+0x2f0e	Car wash
+0x2f0f	Garmin dealer
+0x2f10	Personal services
+0x2f11	Business service
+0x2f12	Communication service
+0x2f13	Repair service
+0x2f14	Social service
+0x2f15	Public utilities
+0x2f16	Truck stop
+0x2f17	Transit service
+
+0x3000	Emergency/Governmental
+0x3001	Police station
+0x3002	Hospital
+0x3003	City hall
+0x3004	Court house
+0x3005	Community center
+0x3006	Border crossing
+0x3007	Government office
+0x3008	Fire department
+
+0x4000	Golf
+0x4100	Fishing spot
+0x4200	Wreck
+0x4300	Marina
+0x4400	Gas station
+0x4500	Restaurant
+0x4600	Bar
+0x4700	Boat ramp
+0x4800	Camping
+0x4900	Park
+0x4a00	Picnic area
+0x4b00	First aid station
+0x4c00	Information
+0x4d00	Parking
+0x4e00	WC
+0x4f00	Shower
+0x5000	Drinking water
+0x5100	Telephone
+0x5200	Scenic area
+0x5300	Skiing
+0x5400	Swimming area
+0x5500	Dam
+
+; Aviation
+0x5600	Controlled area
+0x5700	Danger area
+0x5800	Restricted area
+0x5900	Generic airport
+0x5901	Large airport
+0x5902	Medium airport
+0x5903	Small airport
+0x5904	Heliport
+0x5905	Airport
+
+0x5a00	Mile marker
+0x5b00	Bell
+0x5c00	Diving area
+0x5d00	Daymark, green square
+0x5e00	Daymark, red triangle
+0x6000	Horn
+0x6100	House
+
+0x6200	Depth spot
+0x6300	Elevation spot
+
+; Man-made features
+0x6400	Man-made place
+0x6401	Bridge
+0x6402	Building
+0x6403	Cemetery
+0x6404	Church/mosque/etc
+0x6405	Civil building
+0x6406	Crossing
+0x6407	Dam
+0x6408	Hospital
+0x6409	Levee
+0x640a	Locale
+0x640b	Military
+0x640c	Mine
+0x640d	Oil field
+0x640e	Park
+0x640f	Post office
+0x6410	School
+0x6411	Tower
+0x6412	Trailhead
+0x6413	Tunnel
+0x6414	Well
+0x6415	Historical (ghost) town
+0x6416	Subdivision of housing
+
+; Water features
+0x6500	Water feature
+0x6501	Arroyo
+0x6502	Sand bar
+0x6503	Bay
+0x6504	Bend
+0x6505	Canal
+0x6506	Channel
+0x6507	Cove
+0x6508	Waterfall
+0x6509	Geyser
+0x650a	Glacier
+0x650b	Harbor
+0x650c	Island
+0x650d	Lake
+0x650e	Rapids
+0x650f	Reservoir
+0x6510	Sea
+0x6511	Spring
+0x6512	Stream
+0x6513	Swamp
+
+; Land features
+0x6600	Land feature
+0x6601	Arch
+0x6602	Area
+0x6603	Basin
+0x6604	Beach
+0x6605	Bench
+0x6606	Cape
+0x6607	Cliff
+0x6608	Crater
+0x6609	Flat
+0x660a	Forest
+0x660b	Gap
+0x660c	Gut
+0x660d	Isthmus
+0x660e	Lava
+0x660f	Pillar
+0x6610	Plain
+0x6611	Range
+0x6612	Reserve
+0x6613	Ridge
+0x6614	Rock
+0x6615	Slope
+0x6616	Summit
+0x6617	Valley
+0x6618	Wooded area
+
+;==========================================
+
+.POLYLINE
+
+0x00	Road
+
+; Three levels of highways
+0x01	Major highway
+0x02	Principal highway
+0x03	Other highway road
+
+; Most important kind of street
+0x04	Arterial road
+; Medium important kind of street
+0x05	Collector road
+; Ordinary street (80%)
+0x06	Residential street
+; Smallest kind of street
+0x07	Alleyway/private driveway
+
+0x08	Highway ramp, low-speed
+0x09	Highway ramp, high-speed
+0x0a	Unpaved road
+0x0b	Major highway connector
+0x0c	Traffic roundabout
+0x16	Walkway/trail
+0x14	Railroad
+0x1a	Water or rail ferry
+0x1b	Water or rail ferry
+
+0x19	Time-zone
+0x1e	International boundary
+0x1c	Region/province boundary
+0x1d	County/parish boundary
+
+0x15	Shoreline of water body
+0x18	Stream
+0x1f	River
+0x26	Intermittent stream/ditch
+
+0x20	Minor land contour (1/10)
+0x21	Interm. land contour (1/2)
+0x22	Major land contour (1/1)
+0x23	Minor depth contour (1/10)
+0x24	Interm. depth contour (1/2)
+0x25	Major depth contour (1/1)
+
+0x27	Airport runway centerline
+0x28	Oil or water pipeline
+0x29	Power line
+
+0x2a	Marine boundary (no line)
+0x2b	Marine hazard (no line)
+
+;===================================================
+
+.POLYGON
+
+0x01	Large urban area (>200K)
+0x02	Small urban area (<200K)
+0x03	Rural housing area
+
+0x04	Military base
+0x05	Parking lot
+0x06	Parking garage
+0x07	Airport
+0x08	Shopping center
+0x09	Marina
+0x0a	University/College
+0x0b	Hospital
+0x0c	Industrial complex
+0x0d	Reservation
+0x0e	Airport runway
+0x13	Building/Man-made area
+0x18	Golf course
+0x19	Sports complex
+0x1a	Cemetery
+
+0x14	National park
+0x15	National park
+0x16	National park
+0x17	City park
+0x1e	Provincial park
+0x1f	Provincial park
+0x20	Provincial park
+
+0x28	Sea/Ocean
+0x29	Body of water
+0x32	Sea
+0x3b	Body of water
+0x3c	Large lake (250-600 km²)
+0x3d	Large lake (77-250 km²)
+0x3e	Medium lake (25-77 km²)
+0x3f	Medium lake (11-25 km²)
+0x40	Small lake (0.25-11 km²)
+0x41	Small lake (<0.25 km²)
+0x42	Major lake (>3300 km²)
+0x43	Major lake (1100-3300 km²)
+0x44	Large lake (600-1100 km²)
+0x45	Body of water
+0x46	Major river (>1 km)
+0x47	Large river (200 m-1 km)
+0x48	Medium river (40-200 m)
+0x49	Small river (<40 m)
+0x4c	Intermittent water
+
+0x4a	Area of map selection (in MapSource)
+0x4b	Area of map coverage
+
+0x4d	Glacier
+0x4e	Orchard/plantation
+0x4f	Scrub
+0x50	Forest
+0x51	Wetland/swamp
+0x52	Tundra
+0x53	Sandbank, tidal/mud flat

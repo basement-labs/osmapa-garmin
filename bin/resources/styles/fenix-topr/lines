@@ -1,0 +1,27 @@
+
+
+contour=elevation & contour_ext=elevation_minor  [0x20 resolution 23]
+
+contour=elevation & contour_ext=elevation_medium  [0x21 resolution 22]
+contour=elevation & contour_ext=elevation_major  [0x22 resolution 20]
+contour=elevation | contour_ext=elevation  [0x21 resolution 23]
+
+highway=primary [0x01 road_class=2 road_speed=2 resolution 22]
+highway=secondary [0x01 road_class=2 road_speed=2 resolution 22]
+highway=tertiary [0x01 road_class=2 road_speed=2 resolution 22]
+highway=unclassified  [0x01 road_class=2 road_speed=2 resolution 22]
+highway=service [0x01 road_class=2 road_speed=2 resolution 22]
+highway=road [0x01 road_class=2 road_speed=2 resolution 22]
+highway=track [0x01 road_class=2 road_speed=2 resolution 22]
+
+highway=path [0x16 road_class=0 road_speed=0 resolution 22]
+highway=footway [0x16 road_class=0 road_speed=0 resolution 22]
+
+boundary=administrative { name '${mkgmap:boundary_name}' }
+boundary=administrative & admin_level=2 [0x1e resolution 16]
+
+
+
+#<finalize>
+
+#name=* & mkgmap:no_name!=* { name '${name}' }

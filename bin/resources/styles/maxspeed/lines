@@ -1,0 +1,163 @@
+
+
+# first set the country code
+mkgmap:country!=* & mkgmap:admin_level2=* { set mkgmap:country='${mkgmap:admin_level2}' }
+mkgmap:country!=* & addr:country=* { set mkgmap:country='${addr:country}' }
+mkgmap:country!=* & is_in:country=* { set mkgmap:country='${is_in:country}' }
+
+
+
+# Remove access=yes from highways.
+highway=* & access=yes { delete access }
+# By default, ways are accessible by the highest allowed mode of
+# transportation, and thus access=yes should be redundant.
+# However, sometimes cycleways may be tagged access=destination or similar,
+# to allow cars and motorcycles. In mkgmap, 'access' specifies the
+# generic access rule, and it can be overridden by more specific tags:
+# foot, bicycle, motorcar, motorcycle.
+
+#highway=*  {name '${maxspeed}' | '' ;} 
+
+maxspeed ~ 'signals' {delete maxspeed}
+
+# Hide unaccessible tunnels
+highway=* & tunnel=yes & (access=private|access=no)
+& foot!=* & bicycle!=* {delete highway;delete junction}
+# Disable dead-end-checks for unaccessible oneways
+highway=* & oneway=yes & (access=private|access=no)
+{add mkgmap:dead-end-check=false}
+# Validation-like checks (uncomment to enable)
+#highway=motorway_link & oneway!=yes & oneway!=no { echo "motorway_link lacks oneway" }
+
+
+
+
+
+
+# Roundabouts
+#ROGAL
+junction=roundabout & highway=trunk {name '${maxspeed}' | ''} [0x02 road_class=3 road_speed=2 resolution 22]
+
+junction=roundabout & highway=primary {name '${maxspeed}' | ''} [0x03 road_class=3 road_speed=2 resolution 22]
+
+junction=roundabout & highway=secondary {name '${maxspeed}' | ''} [0x04 road_class=2 road_speed=2 resolution 22]
+
+junction=roundabout & highway=tertiary {name '${maxspeed}' | ''}[0x05 road_class=1 road_speed=1 resolution 22]
+
+junction=roundabout & highway=unclassified {name '${maxspeed}' | ''}[0x06 road_class=1 road_speed=1 resolution 22]
+
+junction=roundabout & highway=residential {name '${maxspeed}' | ''} [0x06 road_class=1 road_speed=1 resolution 22]
+
+junction=roundabout & highway=service {name '${maxspeed}' | ''} [0x06 road_class=0 road_speed=0 resolution 22]
+
+junction=roundabout & highway=road {name '${maxspeed}' | ''} [0x06 road_class=0 road_speed=0 resolution 22]
+
+junction=roundabout {name '${maxspeed}' | ''} [0x06 road_class=0 road_speed=1 resolution 22]
+
+
+
+# Treat disused ways as highway=service, but at lower road_speed.
+highway=* & disused=yes {name '${maxspeed}' | '30'} [0x07 road_class=0 road_speed=1 resolution 22]
+
+# Set highway names to include the reference if there is one
+
+
+
+
+################ ==================== POLAND =====================
+
+mkgmap:country=POL & highway=motorway {name '${maxspeed}' | '140' ; } [0x01 road_class=4  road_speed=7 resolution 22]
+mkgmap:country=POL & highway=motorway_link { name '${maxspeed}' | '140' ;}  [0x01 road_class=4  road_speed=6 resolution 22]
+
+mkgmap:country=POL & highway=trunk { name '${maxspeed}'| '120' ;} [0x02 road_class=4  road_speed=6 resolution 22]
+mkgmap:country=POL & highway=trunk_link { name '${maxspeed}' | '100';}  [0x02 road_class=4  road_speed=5 resolution 22]
+
+mkgmap:country=POL & highway=* & highway!=construction & motorroad=yes {name '${maxspeed}' | '120'} [0x02 road_class=4  road_speed=4 resolution 22]
+
+mkgmap:country=POL &  highway=primary {name '${maxspeed}' | '90';} [0x03 road_class=3 road_speed=5 resolution 22]
+mkgmap:country=POL & highway=primary_link {name '${maxspeed}' | '90';} [0x03 road_class=3 road_speed=3 resolution 22]
+
+mkgmap:country=POL & highway=secondary  {name '${maxspeed}' | '90'}  [0x04 road_class=2 road_speed=5 resolution 22]
+mkgmap:country=POL & highway=secondary_link {name '${maxspeed}' | '90'} [0x04 road_class=2 road_speed=2 resolution 22]
+
+mkgmap:country=POL & highway=tertiary {name '${maxspeed}' | '90'} [0x05 road_class=1 road_speed=4 resolution 22]
+mkgmap:country=POL & highway=tertiary_link {name '${maxspeed}' | '90'} [0x05 road_class=1 road_speed=2 resolution 22]
+
+mkgmap:country=POL & highway=living_street {name '${maxspeed}' | '50'} [0x06 road_class=0 road_speed=1 resolution 22 ]
+mkgmap:country=POL & highway=residential {name '${maxspeed}' | '90'} [0x06 road_class=0 road_speed=2 resolution 22]
+
+
+mkgmap:country=POL & highway=minor {name '${maxspeed}' | '90'} [0x06 road_class=1 road_speed=3 resolution 22]
+mkgmap:country=POL & highway=unclassified {name '${maxspeed}' | '90'} [0x06 road_class=0 road_speed=3 resolution 22]
+mkgmap:country=POL & highway=road { name '${maxspeed}' | '90'}[0x06 road_class=0 road_speed=1  resolution 22]
+mkgmap:country=POL & highway=track {name '${maxspeed}' | '90'} [0x0a road_class=0 road_speed=1 resolution 22]
+mkgmap:country=POL & highway=unsurfaced {name '${maxspeed}' | '90'} [0x0a road_class=0 road_speed=1 resolution 22]
+
+################ ==================== GERMANY =====================
+
+mkgmap:country=DEU & highway=motorway {name '${maxspeed}' | '180' ; } [0x01 road_class=4  road_speed=7 resolution 22]
+mkgmap:country=DEU & highway=motorway_link {name '${maxspeed}' | '180' ; } [0x01 road_class=4  road_speed=7 resolution 22]
+
+mkgmap:country=DEU & highway=trunk { name '${maxspeed}'| '180' ;} [0x02 road_class=4  road_speed=6 resolution 22]
+mkgmap:country=DEU & highway=trunk_link { name '${maxspeed}' | '180';}  [0x02 road_class=4  road_speed=5 resolution 22]
+
+mkgmap:country=DEU & highway=* & highway!=construction & motorroad=yes {name '${maxspeed}' | '180'} [0x02 road_class=4  road_speed=4 resolution 22]
+
+mkgmap:country=DEU &  highway=primary {name '${maxspeed}' | '100';} [0x03 road_class=3 road_speed=5 resolution 22]
+mkgmap:country=DEU & highway=primary_link {name '${maxspeed}' | '100';} [0x03 road_class=3 road_speed=3 resolution 22]
+
+mkgmap:country=DEU & highway=secondary_link {name '${maxspeed}' | '100'} [0x04 road_class=2 road_speed=2 resolution 22]
+mkgmap:country=DEU & highway=secondary {name '${maxspeed}' | '100'} [0x04 road_class=2 road_speed=2 resolution 22]
+
+mkgmap:country=DEU & highway=tertiary {name '${maxspeed}' | '100'} [0x05 road_class=1 road_speed=4 resolution 22]
+mkgmap:country=DEU & highway=tertiary_link {name '${maxspeed}' | '100'} [0x05 road_class=1 road_speed=2 resolution 22]
+
+mkgmap:country=DEU & highway=living_street {name '${maxspeed}' | '50'} [0x06 road_class=0 road_speed=1 resolution 22 ]
+mkgmap:country=DEU & highway=residential {name '${maxspeed}' | '100'} [0x06 road_class=0 road_speed=2 resolution 22]
+
+
+mkgmap:country=DEU & highway=minor {name '${maxspeed}' | '100'} [0x06 road_class=1 road_speed=3 resolution 22]
+mkgmap:country=DEU & highway=unclassified {name '${maxspeed}' | '100'} [0x06 road_class=0 road_speed=3 resolution 22]
+mkgmap:country=DEU & highway=road { name '${maxspeed}' | '100'}[0x06 road_class=0 road_speed=1  resolution 22]
+mkgmap:country=DEU & highway=track {name '${maxspeed}' | '100'} [0x0a road_class=0 road_speed=1 resolution 22]
+mkgmap:country=DEU & highway=unsurfaced {name '${maxspeed}' | '100'} [0x0a road_class=0 road_speed=1 resolution 22]
+
+
+################ ==================== DEFAULT =====================
+highway=motorway {name '${maxspeed}' | '140' ; } [0x01 road_class=4  road_speed=7 resolution 22]
+highway=motorway_link {name '${maxspeed}' | '140' ; } [0x01 road_class=4  road_speed=7 resolution 22]
+
+highway=trunk { name '${maxspeed}'| '120' ;} [0x02 road_class=4  road_speed=6 resolution 22]
+highway=trunk_link { name '${maxspeed}' | '120';}  [0x02 road_class=4  road_speed=5 resolution 22]
+
+highway=* & highway!=construction & motorroad=yes {name '${maxspeed}' | '120'} [0x02 road_class=4  road_speed=4 resolution 22]
+
+highway=primary {name '${maxspeed}' | '90';} [0x03 road_class=3 road_speed=5 resolution 22]
+highway=primary_link {name '${maxspeed}' | '90';} [0x03 road_class=3 road_speed=3 resolution 22]
+
+highway=secondary  {name '${maxspeed}' | '90'}  [0x04 road_class=2 road_speed=5 resolution 22]
+highway=secondary_link  {name '${maxspeed}' | '90'}  [0x04 road_class=2 road_speed=5 resolution 22]
+
+highway=tertiary {name '${maxspeed}' | '90'} [0x05 road_class=1 road_speed=4 resolution 22]
+highway=tertiary_link {name '${maxspeed}' | '90'} [0x05 road_class=1 road_speed=2 resolution 22]
+
+highway=living_street {name '${maxspeed}' | '50'} [0x06 road_class=0 road_speed=1 resolution 22 ]
+highway=residential {name '${maxspeed}' | '90'} [0x06 road_class=0 road_speed=2 resolution 22]
+ 
+highway=minor {name '${maxspeed}' | '90'} [0x06 road_class=1 road_speed=3 resolution 22]
+highway=unclassified {name '${maxspeed}' | '90'} [0x06 road_class=0 road_speed=3 resolution 22]
+highway=road { name '${maxspeed}' | '90'}[0x06 road_class=0 road_speed=1  resolution 22]
+highway=track {name '${maxspeed}' | '90'} [0x0a road_class=0 road_speed=1 resolution 22]
+highway=unsurfaced {name '${maxspeed}' | '90'} [0x0a road_class=0 road_speed=1 resolution 22]
+
+
+
+################ ==================== WSPOLNE =====================
+
+
+highway=service {name '${maxspeed}' | '30'} [0x07 road_class=0 road_speed=2 resolution 22]
+
+
+
+
+

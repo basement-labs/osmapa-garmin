@@ -1,0 +1,67 @@
+
+# first set the country code
+mkgmap:country!=* & mkgmap:admin_level2=* { set mkgmap:country='${mkgmap:admin_level2}' }
+mkgmap:country!=* & addr:country=* { set mkgmap:country='${addr:country}' }
+mkgmap:country!=* & is_in:country=* { set mkgmap:country='${is_in:country}' }
+
+
+#Poziom podziału administracyjnego, ustalony drogą konsensusu. Dla Polski:
+#2 – granica państwa
+#4 – granica województwa
+#6 – granica powiatu
+#7 – granica gminy
+#8 - granica miasta
+#10 - granica sołectwa
+
+
+mkgmap:city!=* & mkgmap:admin_level8=* { set mkgmap:city='${mkgmap:admin_level8}' }
+mkgmap:city!=* & is_in:city=* { set mkgmap:city='${is_in:city}' }
+mkgmap:city!=* & addr:city=* { set mkgmap:city='${addr:city}' }
+mkgmap:city!=* & addr:place=* { set mkgmap:city='${addr:place}' }
+
+#jak nie ma nazwy miasta to szukamy sołectwo
+mkgmap:city!=* & mkgmap:admin_level10=* { set mkgmap:city='${mkgmap:admin_level10}' }
+
+#jak nie ma miasta ani sołectwa to od biedy dajemy gminę
+mkgmap:city!=* & mkgmap:admin_level7=* { set mkgmap:city='${mkgmap:admin_level7}' }
+
+#jak nie ma miasta ani sołectwa ani gminy to od biedy dajemy powiat
+mkgmap:city!=* & mkgmap:admin_level6=* { set mkgmap:city='${mkgmap:admin_level6}' }
+
+#jak już nic nie ma to dajemy województwo
+#mkgmap:city!=* & mkgmap:admin_level4=* { set mkgmap:city='${mkgmap:admin_level4|subst:województwo |subst:Województwo |subst:wojewodztwo |subst:Wojewodztwo }' }
+
+
+
+#wojewodztwo
+mkgmap:region!=* & mkgmap:admin_level4=* { set mkgmap:region='${mkgmap:admin_level4|subst:województwo |subst:Województwo |subst:wojewodztwo |subst:Wojewodztwo }' } 
+#jak nie ma województwa to dajemy powiat
+mkgmap:region!=* & mkgmap:admin_level6=* { set mkgmap:region='${mkgmap:admin_level6}' }  
+#jak nie ma powiatu to dajemy gmine
+mkgmap:region!=* & mkgmap:admin_level7=* { set mkgmap:region='${mkgmap:admin_level7}' } 
+
+#county to jest gmina, province to wojewodztwo
+mkgmap:region!=* & is_in:province=* { set mkgmap:region='${is_in:province}' }
+mkgmap:region!=* & is_in:county=* { set mkgmap:region='${is_in:county}' }
+
+
+mkgmap:postal_code!=* & mkgmap:postcode=* { set mkgmap:postal_code='${mkgmap:postcode}' } 
+mkgmap:postal_code!=* & addr:postcode=* { set mkgmap:postal_code='${addr:postcode}' }
+
+ 
+mkgmap:street!=* & addr:street=* { set mkgmap:street='${addr:street}' }
+#mkgmap:street!=* & highway=* & name=* { set mkgmap:street='${name}' }
+mkgmap:street!=* & addr:housename=* { set mkgmap:street='${addr:housename}' }
+
+
+#jak nie ma ulicy to wpisujemy nazwe miejscowosci - dziala dla wsi bez ulic
+
+#mkgmap:street!=* & mkgmap:city=* { set mkgmap:street='${mkgmap:city}' }
+
+
+mkgmap:housenumber!=* & addr:housenumber=* { set mkgmap:housenumber='${addr:housenumber}' }
+mkgmap:phone!=* & phone=* { set mkgmap:phone='${phone}' }
+mkgmap:is_in!=* & is_in=* { set mkgmap:is_in='${is_in}' }
+
+#na tym etapie wylaczamy tagi short_name bo uzywamy ich tylko do granic administracyjnych
+#short_name=* { delete short_name }

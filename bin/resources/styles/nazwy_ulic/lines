@@ -1,0 +1,129 @@
+# -------------------------------------------------------------------
+# This is the default mkgmap style file for converting OSM ways
+# into Garmin lines.
+# Any line prefaced with # is a comment and will not be applied.
+# Each line is a rule, of the generalised format:
+#  OSM_tag(s)_to_match  [Garmin_type_code resolution]
+# See http://wiki.openstreetmap.org/wiki/Mkgmap/help/style_rules
+# and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
+# for more informatio
+
+
+# routable roundabouts
+#junction=roundabout & highway=motorway [0x0c road_class=4 road_speed=5 resolution 24 continue]
+junction=roundabout & highway=trunk [0x0c road_class=3 road_speed=5 resolution 24 continue]
+junction=roundabout & highway=primary [0x0c road_class=3 road_speed=4 resolution 24 continue]
+junction=roundabout & highway=secondary [0x0c road_class=2 road_speed=3 resolution 24 continue]
+junction=roundabout & highway=tertiary [0x0c road_class=1 road_speed=3 resolution 24 continue]
+junction=roundabout & highway=unclassified [0x0c road_class=1 road_speed=2 resolution 24 continue]
+
+
+junction=roundabout & highway=trunk  [0x11018 resolution 24]
+
+
+junction=roundabout & highway=primary [0x11019 resolution 24]
+
+
+junction=roundabout & highway=secondary [0x1101a resolution 24]
+
+
+junction=roundabout & highway=tertiary [0x1101b resolution 24]
+
+
+junction=roundabout & highway=unclassified [0x1101c resolution 24]
+
+
+junction=roundabout & highway=residential [0x1101c resolution 24]
+
+
+
+#nie mamy osobnego typu dla ronda service, ale kogo obchodzi nawigacja po czyms takim
+junction=roundabout & highway=service [0x07 road_class=1 road_speed=2 resolution 24]
+
+
+junction=roundabout & highway=road [0x1101c resolution 24]
+
+
+junction=roundabout  [0x1101c resolution 24]
+
+
+
+# Treat disused ways as highway=service, but at lower road_speed.
+highway=* & disused=yes [0x07 road_class=0 road_speed=1 resolution 24]
+
+
+highway=motorway { add bicycle = no; add foot = no;  } [0x01 road_class=4 road_speed=7 resolution 23]
+
+
+highway=motorway_link { add bicycle = no; add foot = no } [0x01 road_class=4 road_speed=6 resolution 24]
+
+
+
+highway=trunk { add bicycle = no; add foot = no; } [0x02 road_class=4 road_speed=6 resolution 24]
+
+
+highway=trunk_link { add bicycle = no; add foot = no }  [0x02 road_class=4 road_speed=3 resolution 24]
+
+
+
+# to są jakieś niepolskie drogi podobne do dróg szybkiego ruchu
+highway=* & highway!=construction & motorroad=yes  {add bicycle = no; add foot = no}
+highway=* & highway!=construction & motorroad=yes [0x02 road_class=4 road_speed=5 resolution 24]
+
+
+highway=primary  [0x03 road_class=3 road_speed=4 resolution 24]
+
+highway=primary_link  [0x03 road_class=3 road_speed=3 resolution 24]
+                                                                                      
+
+highway=secondary  [0x04 road_class=2 road_speed=3 resolution 24]
+
+highway=secondary_link  [0x04 road_class=2 road_speed=2 resolution 24]
+
+
+
+highway=tertiary  [0x05 road_class=1 road_speed=3 resolution 24]
+
+highway=tertiary_link [0x05 road_class=1 road_speed=2 resolution 24]
+
+
+highway=living_street  [0x06 road_class=0 road_speed=1 resolution 24 ]
+
+
+highway=residential  [0x06 road_class=0 road_speed=2 resolution 24]
+
+
+highway=minor [0x06 road_class=1 road_speed=3 resolution 24]
+
+highway=unclassified [0x06 road_class=0 road_speed=3 resolution 24]
+
+
+highway=road   { add mkgmap:dead-end-check = false} [0x06 road_class=0 road_speed=1  resolution 24]
+
+highway=service [0x07 road_class=0 road_speed=2 resolution 24]
+
+
+highway=track  [0x0a road_class=0 road_speed=1 resolution 24]
+
+highway=unsurfaced [0x0a road_class=0 road_speed=1 resolution 24]
+
+
+# Mop up any unrecognised highway types
+#highway=* & area!=yes & highway!=construction & construction!=* & highway!=proposed [0x07 road_class=0 road_speed=0 resolution 24]
+
+highway=construction  [0x07 road_class=0 road_speed=0 resolution 24]
+
+
+<finalize>
+
+include 'inc/roadspeed';
+include 'inc/access';
+include 'inc/adresy';
+
+highway=construction { name 'droga w budowie ${ref}' | 'droga w budowie - ${name}' | 'droga w budowie';}
+
+highway=* & name=* & highway!=proposed & proposed!=yes {name '${name}' ; }
+highway=* & ref=* & highway!=proposed & proposed!=yes {name '${ref}' ; }
+
+
+

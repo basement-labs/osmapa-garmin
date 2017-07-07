@@ -1,0 +1,19 @@
+
+
+#mkgmap:route_type_bicycle=yes {name '${mkgmap:route_name}';} [0x10e00   resolution 22]
+#mkgmap:route_type_hiking=yes {name '${mkgmap:route_name}';} [0x10e01   resolution 22]
+
+mkgmap:route_type_bicycle=yes  [0x10e00   resolution 22]
+mkgmap:route_type_hiking=yes  [0x10e01   resolution 22]
+
+
+#highway=tertiary {set mkgmap:no_name=yes;} [0x02 road_class=3 road_speed=4  resolution 22]
+
+boundary=administrative { name '${mkgmap:boundary_name}' }
+boundary=administrative & admin_level=2 [0x1e resolution 16]
+
+
+
+#<finalize>
+
+#name=* & mkgmap:no_name!=* { name '${name}' }

@@ -1,0 +1,3 @@
+
+include 'inc/adresy';
+addr:housenumber=* { name '${addr:housenumber}' } [0x1e04 resolution 24] 

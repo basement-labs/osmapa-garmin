@@ -1,0 +1,45 @@
+
+point - 0x1151a - barrier=gate
+
+
+point - 0x1e04 - numer domu (addr:* bez przypisania do budynku)
+
+line 0x0a - track/unsirfaced
+line 0x0d - droga rowerowa highway=cycleway
+line 0x0e - track z tracktype grade 3-6
+line 0x27 - tunel
+line 0x10000 - residential/unclassified przy mniejszym zoomie
+line 0x10113 - tory tramwajowe
+line 0x10114 - tunel
+line 0x10101 - most 1 (ró¿ni¹ siê szerokoœci¹)
+line 0x10102
+
+line 0x11010 - secondary przy mniejszym zoomie
+line 0x11011 - primary przy mniejszym zoomie 
+line 0x11012 - residential/unclassified przy mniejszym zoomie - obecnie zamienione na 0x10000
+line 0x11014 - residential/unclassified przy œrednim zoomie (wygl¹da tak samo, ale bez labeli)
+line 0x11015 - tory przy mniejszym zoomie
+line 0x11016 - nieuzywane tory
+line 0x11017 - RFI
+line 0x11018 - trunk rondo (jest takie w ogóle?)
+line 0x11019 - droga primary rondo
+line 0x1101a - droga secondary rondo
+line 0x1101b - droga tertiary rondo
+line 0x1101c - droga unclassified rondo
+line 0x1101d - tertiary przy mniejszych zoomach
+
+- 
+line 0x10e0b - barrier=fence
+line 0x10e0c - barrier=wall
+line 0x10e0d - barrier=hedge
+line 0x0d - droga rowerowa
+line 0x0e - track z tracktype 3-6
+
+polygon 0x0d - pola
+polygon 0x10f00 - landuse=commercial, teren handlowy
+polygon 0x10f01 - rozne amenity
+polygon 0x10f02 - tereny zielone przy mniejszym zoomie
+polygon 0x10f03 - woda przy mniejszym zoomie
+polygon 0x10f04 - las przy mniejszym zoomie
+polygon 0x10f05 - wrzosowisko
+polygon 0x10f06 - zwir - natural=scree

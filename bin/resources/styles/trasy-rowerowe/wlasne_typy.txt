@@ -1,0 +1,26 @@
+lines:
+
+
+points:
+
+
+0x11517 - stacja kolejowa
+0x11518 - krzyz przydrozny   
+0x11519 - kapliczka
+0x6419 - ruiny
+0x1151a - turystyka/historic
+0x1151b - koscioly
+0x1151c - zadaszenie
+
+#### NOWE:
+
+0x11010 - trasa rowerowa czerwona
+0x11011 - trasa rowerowa niebieska
+0x11012 - trasa rowerowa zielona
+0x11013 - trasa rowerowa zolta
+0x11014 - trasa rowerowa czarna
+0x11015 - trasa rowerowa nieokreslona
+
+0x11016 - szlak pieszy niebieski
+0x11017 - szlak pieszy czerwony
+0x11017 -
