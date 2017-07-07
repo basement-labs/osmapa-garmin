@@ -547,9 +547,7 @@ def kompiluj_mape_mongolia():
 def upload_map():
 
   os.chdir(mapy_gotowe)
-  ftp=FTP("irbis.ionic.pl", "upload@garmin.osmapa.pl", "upload!@#$")
-  
-  #file=open('OSMapaPL-{wersja_mapy}.exe'.format(wersja_mapy=wersja_mapy, 'rb')
+  file=open('OSMapaPL-{wersja_mapy}.exe'.format(wersja_mapy=wersja_mapy, 'rb')
   #ftp.storbinary()
   
   #ftp.login()
