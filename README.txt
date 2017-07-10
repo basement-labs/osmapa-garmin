@@ -1,3 +1,7 @@
-Aby zainstalowaæ mapê na urz¹dzeniu Garmin, skopiuj na niego plik gmapsupp.img. Je¿eli taki plik istnieje ju¿ na urz¹dzeniu, zmieñ nazwê nowego na inn¹ lub zast¹p stary plik. 
 
-Starsze  urz¹dzenia Garmin nie obs³uguj¹ ró¿nych nazw plików dla map - je¿eli zast¹pisz ju¿ istniej¹cy plik gmapsupp.img, stracisz poprzednio zainstalowane mapy. Je¿eli wgrasz OSMapê pod inn¹ nazw¹ pliku urz¹dzenie GPS mo¿e jej nie wykryæ. W razie w¹tpliwoœci u¿yj google oraz forum garniak.pl ;)
+This is set of files (mkgmap, mkgmap styles, TYP files and helper scripts) used to compile Garmin maps of Poland called
+OSMapa (available at http://garmin.osmapa.pl)
+
+At present point this may not work 'out of the box' because some files or temporaty files are not created automatically.
+Most useful thing at this point is style of the map.
+
