@@ -278,8 +278,7 @@ def przygotuj_kompilacje(dest, source):
 def kompiluj_mape_glowna():
  
   os.chdir(tmp_mapa_glowna)
-  shutil.copy(binarki + "/typ/" + typfile_glowna, "style.typ") 
-  shutil.copy(mapa_root + "/README.TXT", "README.TXT")
+  shutil.copy(binarki + "/typ/" + typfile_glowna, "style.typ")
   ret=os.system('start /low /b /wait java -enableassertions -Xmx6000m -jar {binarki}/mkgmap.jar --verbose --family-name=OSMapaPL --description=OSMapaPL --series-name=OSMapaPL  --coastlinefile={dane_osm}/coastlines_europe.osm.pbf  --read-config={mapa_root}/config/osmapa.config --bounds={dane_osm}/bounds --family-id={fid_glowna} --product-id={fid_glowna} --mapname=66{fid_glowna}001 --overview-mapname=66{fid_glowna}000   --style-file={binarki}/resources/styles/ --style={styl}  --check-styles  -c template.args  style.typ'.format(mapa_root=mapa_root, binarki=binarki, styl=styl_mapy_glowna, fid_glowna=fid_glowna, dane_osm=tmp_dane_osm))    
   print("kompiluj_mape - mkgmap return value: " + str(ret))
 
@@ -298,7 +297,7 @@ def kompiluj_mape_glowna():
       
   os.rename("OSMapaPL.exe", "{mapy_gotowe}/OSMapaPL-{wersja_mapy}.exe".format(mapy_gotowe=mapy_gotowe, wersja_mapy=wersja_mapy))
   
-  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\OSMapaPL-{wersja_mapy}_IMG.zip gmapsupp.img README.TXT".format(binarki=binarki, wersja_mapy=wersja_mapy, mapy_gotowe=mapy_gotowe))    
+  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\OSMapaPL-{wersja_mapy}_IMG.zip gmapsupp.img".format(binarki=binarki, wersja_mapy=wersja_mapy, mapy_gotowe=mapy_gotowe))
 
   if(ret!=0):
     raise Exception("Blad kompresora ZIP")
@@ -312,8 +311,6 @@ def kompiluj_mape_glowna():
 def kompiluj_mape_warstwice():
  
   os.chdir(tmp_mapa_warstwice)
-  #shutil.copy(binarki + "/typ/" + typfile_glowna, "style.typ") 
-  shutil.copy(mapa_root + "/README.TXT", "README.TXT")
   ret=os.system('start /low /b /wait java -enableassertions -Xmx6000m -jar {binarki}/mkgmap.jar --verbose --family-name=OSMapa-warstwice --description=OSMapa-warstwice --series-name=OSMapa-warstwice    --read-config={mapa_root}/config/osmapa_warstwice.config  --family-id={fid_warstwice} --product-id={fid_warstwice} --mapname=66{fid_warstwice}001 --overview-mapname=66{fid_warstwice}000   --style-file={binarki}/resources/styles/ --style={styl}  --check-styles  -c template.args'.format(mapa_root=mapa_root, binarki=binarki, styl=styl_mapy_warstwice, fid_warstwice=fid_warstwice, dane_osm=tmp_dane_osm))    
   print("kompiluj_mape - mkgmap return value: " + str(ret))
 
@@ -332,7 +329,7 @@ def kompiluj_mape_warstwice():
       
   os.rename("OSMapa-warstwice.exe", "{mapy_gotowe}/OSMapa-warstwice.exe".format(mapy_gotowe=mapy_gotowe, wersja_mapy=wersja_mapy))
   
-  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\OSMapa-warstwice_IMG.zip gmapsupp.img README.TXT".format(binarki=binarki, wersja_mapy=wersja_mapy, mapy_gotowe=mapy_gotowe))    
+  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\OSMapa-warstwice_IMG.zip gmapsupp.img".format(binarki=binarki, wersja_mapy=wersja_mapy, mapy_gotowe=mapy_gotowe))
 
   if(ret!=0):
     raise Exception("Blad kompresora ZIP")
@@ -346,8 +343,7 @@ def kompiluj_mape_warstwice():
 def kompiluj_mape_fenix_polska():
  
   os.chdir(tmp_mapa_fenix_polska)
-  shutil.copy(binarki + "/typ/" + typfile_fenix_polska, "style.typ") 
-  shutil.copy(mapa_root + "/README.TXT", "README.TXT")
+  shutil.copy(binarki + "/typ/" + typfile_fenix_polska, "style.typ")
   ret=os.system('start /low /b /wait java -enableassertions -Xmx6000m -jar {binarki}/mkgmap.jar --verbose --family-name=OSMapaPL-Fenix --description=OSMapaPL-Fenix --series-name=OSMapaPL-Fenix    --read-config={mapa_root}/config/fenix_polska.config --bounds={dane_osm}/bounds --family-id={fid_fenix_polska} --product-id={fid_fenix_polska} --mapname={fid_fenix_polska}001 --overview-mapname={fid_fenix_polska}000   --style-file={binarki}/resources/styles/ --style={styl}  --check-styles -c template.args    style.typ'.format(mapa_root=mapa_root, binarki=binarki, styl=styl_mapy_fenix_polska, fid_fenix_polska=fid_fenix_polska, dane_osm=tmp_dane_osm))    
   print("kompiluj_mape - mkgmap return value: " + str(ret))
 
@@ -366,7 +362,7 @@ def kompiluj_mape_fenix_polska():
       
   os.rename("OSMapaPL-Fenix.exe", "{mapy_gotowe}/OSMapaPL-Fenix-{wersja_mapy}.exe".format(mapy_gotowe=mapy_gotowe, wersja_mapy=wersja_mapy_fenix_polska))
   
-  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\OSMapaPL-Fenix-{wersja_mapy}_IMG.zip gmapsupp.img README.TXT".format(binarki=binarki, wersja_mapy=wersja_mapy_fenix_polska, mapy_gotowe=mapy_gotowe))    
+  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\OSMapaPL-Fenix-{wersja_mapy}_IMG.zip gmapsupp.img".format(binarki=binarki, wersja_mapy=wersja_mapy_fenix_polska, mapy_gotowe=mapy_gotowe))
 
   if(ret!=0):
     raise Exception("Blad kompresora ZIP")
@@ -380,8 +376,7 @@ def kompiluj_mape_fenix_polska():
 def kompiluj_mape_fenix_topr():
  
   os.chdir(tmp_mapa_fenix_topr)
-  shutil.copy(binarki + "/typ/" + typfile_fenix_topr, "style.typ") 
-  shutil.copy(mapa_root + "/README.TXT", "README.TXT")
+  shutil.copy(binarki + "/typ/" + typfile_fenix_topr, "style.typ")
   ret=os.system('start /low /b /wait java -enableassertions -Xmx6000m -jar {binarki}/mkgmap.jar --verbose --family-name=Fenix-TOPR --description=Fenix-TOPR --series-name=Fenix-TOPR    --read-config={mapa_root}/config/fenix_topr.config --bounds={dane_osm}/bounds --family-id={fid_fenix_topr} --product-id={fid_fenix_topr} --mapname={fid_fenix_topr}001 --overview-mapname={fid_fenix_topr}000   --style-file={binarki}/resources/styles/ --style={styl}  --check-styles -c template.args    style.typ'.format(mapa_root=mapa_root, binarki=binarki, styl=styl_mapy_fenix_topr, fid_fenix_topr=fid_fenix_topr, dane_osm=tmp_dane_osm))    
   print("kompiluj_mape - mkgmap return value: " + str(ret))
 
@@ -400,7 +395,7 @@ def kompiluj_mape_fenix_topr():
       
   os.rename("Fenix-TOPR.exe", "{mapy_gotowe}/Fenix-TOPR-{wersja_mapy}.exe".format(mapy_gotowe=mapy_gotowe, wersja_mapy=wersja_mapy_fenix_topr))
   
-  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\Fenix-TOPR-{wersja_mapy}_IMG.zip gmapsupp.img README.TXT".format(binarki=binarki, wersja_mapy=wersja_mapy_fenix_topr, mapy_gotowe=mapy_gotowe))    
+  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\Fenix-TOPR-{wersja_mapy}_IMG.zip gmapsupp.img".format(binarki=binarki, wersja_mapy=wersja_mapy_fenix_topr, mapy_gotowe=mapy_gotowe))
 
   if(ret!=0):
     raise Exception("Blad kompresora ZIP")
@@ -413,8 +408,7 @@ def kompiluj_mape_fenix_topr():
 def kompiluj_mape_ogonki():
  
   os.chdir(tmp_mapa_ogonki)
-  shutil.copy(binarki + "/typ/" + typfile_ogonki, "style.typ") 
-  shutil.copy(mapa_root + "/README.TXT", "README.TXT")
+  shutil.copy(binarki + "/typ/" + typfile_ogonki, "style.typ")
   ret=os.system('start /low /b /wait java -enableassertions -Xmx6000m -jar {binarki}/mkgmap.jar --family-name=OSMapaPL-OGONKI --description=OSMapaPL-OGONKI --series-name=OSMapaPL-OGONKI  --coastlinefile={dane_osm}/coastlines_europe.osm.pbf  --read-config={mapa_root}/config/osmapa_ogonki.config --bounds={dane_osm}/bounds --family-id={fid_ogonki} --product-id={fid_ogonki} --mapname=66{fid_ogonki}001 --overview-mapname=66{fid_ogonki}000  --style-file={binarki}/resources/styles/ --style={styl} --check-styles --lower-case --code-page=1250  -c template.args  style.typ'.format(mapa_root=mapa_root, binarki=binarki, styl=styl_mapy_ogonki, fid_ogonki=fid_ogonki, dane_osm=tmp_dane_osm))    
   print("kompiluj_mape - mkgmap return value: " + str(ret))
 
@@ -433,7 +427,7 @@ def kompiluj_mape_ogonki():
       
   os.rename("OSMapaPL-OGONKI.exe", "{mapy_gotowe}/OSMapaPL-OGONKI-{wersja_mapy}.exe".format(mapy_gotowe=mapy_gotowe, wersja_mapy=wersja_mapy))
   
-  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\OSMapaPL-OGONKI-{wersja_mapy}_IMG.zip gmapsupp.img README.TXT".format(binarki=binarki, wersja_mapy=wersja_mapy, mapy_gotowe=mapy_gotowe))    
+  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\OSMapaPL-OGONKI-{wersja_mapy}_IMG.zip gmapsupp.img".format(binarki=binarki, wersja_mapy=wersja_mapy, mapy_gotowe=mapy_gotowe))
 
   if(ret!=0):
     raise Exception("Blad kompresora ZIP")
@@ -446,8 +440,7 @@ def kompiluj_mape_ogonki():
 def kompiluj_mape_light():
  
   os.chdir(tmp_mapa_light)
-  shutil.copy(binarki + "/typ/" + typfile_light, "style.typ") 
-  shutil.copy(mapa_root + "/README.TXT", "README.TXT")
+  shutil.copy(binarki + "/typ/" + typfile_light, "style.typ")
   ret=os.system('start /low /b /wait java -enableassertions -Xmx6000m -jar {binarki}/mkgmap.jar --family-name=OSMapaPL-LIGHT --description=OSMapaPL-LIGHT --series-name=OSMapaPL-LIGHT  --coastlinefile={dane_osm}/coastlines_europe.osm.pbf  --read-config={mapa_root}/config/osmapa_light.config --bounds={dane_osm}/bounds --family-id={fid_ogonki} --product-id={fid_ogonki} --mapname=66{fid_ogonki}001 --overview-mapname=66{fid_ogonki}000  --style-file={binarki}/resources/styles/ --style={styl} --check-styles  -c template.args  style.typ'.format(mapa_root=mapa_root, binarki=binarki, styl=styl_mapy_light, fid_ogonki=fid_light, dane_osm=tmp_dane_osm))    
   print("kompiluj_mape - mkgmap return value: " + str(ret))
 
@@ -466,7 +459,7 @@ def kompiluj_mape_light():
       
   os.rename("OSMapaPL-LIGHT.exe", "{mapy_gotowe}/OSMapaPL-LIGHT-{wersja_mapy}.exe".format(mapy_gotowe=mapy_gotowe, wersja_mapy=wersja_mapy))
   
-  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\OSMapaPL-LIGHT-{wersja_mapy}_IMG.zip gmapsupp.img README.TXT".format(binarki=binarki, wersja_mapy=wersja_mapy, mapy_gotowe=mapy_gotowe))    
+  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\OSMapaPL-LIGHT-{wersja_mapy}_IMG.zip gmapsupp.img".format(binarki=binarki, wersja_mapy=wersja_mapy, mapy_gotowe=mapy_gotowe))
 
   if(ret!=0):
     raise Exception("Blad kompresora ZIP")
@@ -479,8 +472,7 @@ def kompiluj_mape_light():
 def kompiluj_mape_szlaki():
  
   os.chdir(tmp_mapa_szlaki)
-  shutil.copy(binarki + "/typ/" + typfile_szlaki, "style.typ") 
-  shutil.copy(mapa_root + "/README.TXT", "README.TXT")
+  shutil.copy(binarki + "/typ/" + typfile_szlaki, "style.typ")
   ret=os.system('start /low /b /wait java -Dlog.config={binarki}/mkgmap_log.props -enableassertions -Xmx2000m -jar {binarki}/mkgmap.jar  --family-name=OSMapaPL-SZLAKI  --read-config={mapa_root}/config/osmapa_szlaki.config  --family-id={fid_szlaki} --product-id={fid_szlaki} --mapname=66{fid_szlaki}001 --overview-mapname=66{fid_szlaki}000 --description=OSMapaPL-SZLAKI --series-name=OSMapaPL-SZLAKI  --style-file={binarki}/resources/styles/ --style={styl}  --check-styles -c template.args  style.typ'.format(mapa_root=mapa_root, binarki=binarki, styl=styl_mapy_szlaki, fid_szlaki=fid_szlaki, dane_osm=tmp_dane_osm))    
   print("kompiluj_mape - mkgmap return value: " + str(ret))
 
@@ -499,7 +491,7 @@ def kompiluj_mape_szlaki():
       
   os.rename("OSMapaPL-SZLAKI.exe", "{mapy_gotowe}/OSMapaPL-SZLAKI-{wersja_mapy_szlaki}.exe".format(mapy_gotowe=mapy_gotowe, wersja_mapy_szlaki=wersja_mapy_szlaki))
   
-  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\OSMapaPL-SZLAKI-{wersja_mapy_szlaki}_IMG.zip gmapsupp.img README.TXT".format(binarki=binarki, wersja_mapy_szlaki=wersja_mapy_szlaki, mapy_gotowe=mapy_gotowe))    
+  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\OSMapaPL-SZLAKI-{wersja_mapy_szlaki}_IMG.zip gmapsupp.img".format(binarki=binarki, wersja_mapy_szlaki=wersja_mapy_szlaki, mapy_gotowe=mapy_gotowe))
 
   if(ret!=0):
     raise Exception("Blad kompresora ZIP")
@@ -513,8 +505,7 @@ def kompiluj_mape_szlaki():
 def kompiluj_mape_mongolia():
  
   os.chdir(tmp_mapa_mongolia)
-  shutil.copy(binarki + "/typ/" + typfile_mongolia, "style.typ") 
-  shutil.copy(mapa_root + "/README.TXT", "README.TXT")
+  shutil.copy(binarki + "/typ/" + typfile_mongolia, "style.typ")
   ret=os.system('start /low /b /wait java -enableassertions -Xmx6000m -jar {binarki}/mkgmap.jar --verbose --family-name=Mongolia-Topo --description=Mongolia-Topo --series-name=Mongolia-Topo --read-config={mapa_root}/config/mongolia.config --bounds={dane_osm}/bounds-mongolia --family-id={fid_mongolia} --product-id={fid_mongolia} --mapname={fid_mongolia}001 --overview-mapname={fid_mongolia}000   --style-file={binarki}/resources/styles/ --style={styl}  --check-styles  -c template.args  style.typ'.format(mapa_root=mapa_root, binarki=binarki, styl=styl_mapy_mongolia, fid_mongolia=fid_mongolia, dane_osm=tmp_dane_osm))    
   print("kompiluj_mape_mongolia - mkgmap return value: " + str(ret))
 
@@ -533,7 +524,7 @@ def kompiluj_mape_mongolia():
       
   os.rename("Mongolia-Topo.exe", "{mapy_gotowe}/Mongolia-Topo-{wersja_mapy}.exe".format(mapy_gotowe=mapy_gotowe, wersja_mapy=wersja_mapy_mongolia))
   
-  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\Mongolia-Topo-{wersja_mapy}_IMG.zip gmapsupp.img README.TXT".format(binarki=binarki, wersja_mapy=wersja_mapy_mongolia, mapy_gotowe=mapy_gotowe))    
+  ret=os.system("start /low /b /wait {binarki}\\zip.exe -9 {mapy_gotowe}\\Mongolia-Topo-{wersja_mapy}_IMG.zip gmapsupp.img".format(binarki=binarki, wersja_mapy=wersja_mapy_mongolia, mapy_gotowe=mapy_gotowe))
 
   if(ret!=0):
     raise Exception("Blad kompresora ZIP")
