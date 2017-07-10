@@ -65,7 +65,7 @@ binarki= mapa_root + "\\bin"
 
 katalog_tmp=mapa_root + "\\tmp"
 
-tmp_dane_osm=katalog_tmp +"\\OSM"
+tmp_dane_osm=mapa_root + "\\OSM"
 tmp_mapa_glowna=katalog_tmp + "\\OSMAPA-" + wersja_mapy
 tmp_mapa_ogonki=katalog_tmp + "\\OSMAPA-OGONKI-" + wersja_mapy 
 tmp_mapa_light=katalog_tmp + "\\OSMAPA-LIGHT-" + wersja_mapy 
@@ -544,10 +544,10 @@ def kompiluj_mape_mongolia():
     
   
 
-def upload_map():
+#def upload_map():
 
-  os.chdir(mapy_gotowe)
-  file=open('OSMapaPL-{wersja_mapy}.exe'.format(wersja_mapy=wersja_mapy, 'rb')
+#  os.chdir(mapy_gotowe)
+  #file=open('OSMapaPL-{wersja_mapy}.exe'.format(wersja_mapy=wersja_mapy, 'rb')
   #ftp.storbinary()
   
   #ftp.login()
