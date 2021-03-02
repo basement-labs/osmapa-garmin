@@ -353,7 +353,7 @@ barrier=block | barrier=cycle_barrier | barrier=stile | barrier=kissing_gate [0x
 
 power=generator & generator:source=wind [0x6418 resolution 24]
 
-#addr:housenumber=* { set name='${addr:housenumber}' } [0x1e04 resolution 24] 
+addr:housenumber=* { set name='${addr:housenumber}' } [0x1e04 resolution 24] 
 
 man_made=cross [0x6419 resolution 24 default_name 'Krzyz']
 

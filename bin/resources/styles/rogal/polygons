@@ -119,13 +119,18 @@ water=river [0x46 resolution 18]
 
 #jakaś drobnica mniejsza niż 5000 m2
 
-(natural=water | natural=lake | landuse=reservoir) & area_size() < 1700  [0x41 resolution 24]
+#(natural=water | natural=lake | landuse=reservoir) & area_size() < 1700  [0x41 resolution 24]
 
 #zbiorniki wodne mniejsze niż 0.25 km2
-(natural=water | natural=lake | landuse=reservoir) & area_size() < 83333  [0x40 resolution 22]
+#(natural=water | natural=lake | landuse=reservoir) & area_size() < 83333  [0x40 resolution 22]
 
-natural=water | natural=lake | landuse=reservoir  [0x10f03 resolution 20-18 continue]
-natural=water | natural=lake | landuse=reservoir [0x3c resolution 22]
+#to było włączone
+#natural=water | natural=lake | landuse=reservoir  [0x10f03 resolution 20-18 continue]
+
+# test dużych jezior
+#(natural=water | natural=lake | landuse=reservoir) & area_size() > 83334  [0x40 resolution 18]
+
+natural=water | natural=lake | landuse=reservoir [0x3c resolution 18]
 
 natural=waterfall | waterway=waterfall [0x47 resolution 22]
 

@@ -184,7 +184,9 @@ highway=* & highway!=proposed & highway!=construction & highway!=footway & highw
 
 # MOSTY  
 
-(highway=motorway | highway=trunk | highway=primary | highway=secondary | highway=tertiary) & bridge=yes  {set mkgmap:no_name=yes} [0x10101 resolution 22 continue]
+#(highway=motorway | highway=trunk | highway=primary | highway=secondary | highway=tertiary) & bridge=yes  {set mkgmap:no_name=yes} [0x10101 resolution 22 continue]
+(highway=motorway | highway=trunk | highway=primary | highway=secondary | highway=tertiary | highway=footway | highway=unclassified | highway=residental | highway=track | highway=path | highway=service ) & (bridge=yes | bridge=viaduct) {set mkgmap:no_name=yes} [0x10101 resolution 22 continue]
+
 
 # AUTOSTRADY
 highway=motorway {name '${ref|highway-symbol:hbox}' } [0x01 resolution 16-15 continue]
@@ -267,6 +269,7 @@ highway=living_street  [0x06 road_class=0 road_speed=1 resolution 24 ]
 
 
 # residential nieutwardzone
+highway=residential & tracktype=* & (surface=asphalt | surface=paved | surface=sett | surface=concrete | surface=concrete:lanes | surface=concrete:plates | surface=paving_stones  | surface=cobblestone  | surface=cobblestone:flattened  | surface=metal  | surface=wood) { set mkgmap:unpaved=0 }
 highway=residential & mkgmap:unpaved=1 {set mkgmap:no_name=yes} [0x0f resolution 23-22 continue]
 highway=residential & mkgmap:unpaved=1 [0x0f road_class=0 road_speed=1 resolution 24]
 
@@ -297,6 +300,7 @@ highway=minor & mkgmap:unpaved=1 [0x0a road_class=0 road_speed=1 resolution 22]
 highway=minor [0x06 road_class=0 road_speed=3 resolution 20]
 
 #unclassified nieutwardzone
+highway=unclassified & tracktype=* & (surface=asphalt | surface=paved | surface=sett | surface=concrete | surface=concrete:lanes | surface=concrete:plates | surface=paving_stones  | surface=cobblestone  | surface=cobblestone:flattened  | surface=metal  | surface=wood) { set mkgmap:unpaved=0 }
 highway=unclassified & mkgmap:unpaved=1   {set mkgmap:no_name=yes} [0x0f resolution 23-22 continue]
 highway=unclassified & mkgmap:unpaved=1 [0x0f road_class=0 road_speed=1 resolution 24]
 
@@ -306,7 +310,7 @@ highway=unclassified {set mkgmap:no_name=yes} [0x10e11 resolution 23-22 continue
 highway=unclassified [0x06 road_class=0 road_speed=3 resolution 24]
 
 #road nieutwardzone
-
+highway=road & tracktype=* & (surface=asphalt | surface=paved | surface=sett | surface=concrete | surface=concrete:lanes | surface=concrete:plates | surface=paving_stones  | surface=cobblestone  | surface=cobblestone:flattened  | surface=metal  | surface=wood) { set mkgmap:unpaved=0 }
 highway=road & mkgmap:unpaved=1 {set mkgmap:no_name=yes} [0x0f resolution 23-22 continue]
 highway=road & mkgmap:unpaved=1 [0x0f road_class=0 road_speed=1 resolution 24]
 
@@ -319,6 +323,11 @@ highway=road   { add mkgmap:dead-end-check = false} [0x06 road_class=0 road_spee
 
 
 highway=service [0x07 road_class=0 road_speed=2 resolution 24]
+
+#road drogi w budowie
+
+#highway=construction [0x07 road_class=0 road_speed=2 resolution 24]
+highway=construction [0x10e1e road_class=0 road_speed=2 resolution 20]
 
 highway=bridleway {add access = no; add bicycle = yes; add foot = yes} [0x07 road_class=0 road_speed=0 resolution 23]
 
@@ -340,14 +349,14 @@ highway=unsurfaced [0x0a road_class=0 road_speed=1 resolution 23]
 highway=* & area!=yes & highway!=construction & construction!=* & highway!=proposed & highway!=platform [0x07 road_class=0 road_speed=0 resolution 22]
 
 natural=coastline [0x15 resolution 15]
-power=line [0x29 resolution 24]
+power=line {set mkgmap:no_name=yes} [0x29 resolution 24]
 
 
 #KOLEJ, METRO, PROMY
 
 
 railway=abandoned | railway=disused [0x10e17  resolution 24]
-
+railway=disused [0x10e17  resolution 24]
 
 #za pomoca length wycinamy rozne bocznice. Bocznice zazwyczaj tez nie maja layer albo name
 #railway=rail & !(tunnel=yes) & (length() > 1000 | name=* | layer=*) [0x10e18 resolution 20-20 continue]
@@ -403,8 +412,11 @@ boundary=administrative { name '${mkgmap:boundary_name}' }
 
 #renderujemy tylko granice wojewodztw i krajow
 
-boundary=administrative & admin_level=2 [0x1e resolution 15]
-boundary=administrative & admin_level=4 [0x1c resolution 18-15]
+boundary=administrative & admin_level<3 [0x1e resolution 16]
+boundary=administrative & admin_level<5 [0x1d resolution 22]
+boundary=administrative & admin_level<8 [0x1c resolution 22]
+boundary=administrative & admin_level<9 [0x1c resolution 22]
+boundary=administrative [0x1c resolution 22]
 
 
 <finalize>
