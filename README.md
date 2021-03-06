@@ -49,9 +49,9 @@ manually and place in correct paths before running the toolchain.
 
 See documentation in the `/doc/` directory.
 
-## Authors
+## Main contributors
 
-Michał Rogalski 
-Andrzej Talarczyk
-Paweł Kosiorek
+- Michał Rogala - Main project author
+- Andrzej Talarczyk - Maintainer, main author of major rebuild - (@atalarczyk)
+- Paweł Kosiorek - Visualization updates - (@dodoelk)
 
