@@ -10,7 +10,7 @@ import time
 src_db_url = "http://download.openstreetmap.fr/extracts/europe-latest.osm.pbf"
 europe_pbf_filename = 'europe-latest.osm.pbf'
 
-version = "V2.00"
+version = "V2.01"
 poland_pbf_filename = 'extracted-europe-latest.osm.pbf'
 extract_polygon_filename = 'polska_przygranicze.poly'
 srtm_pbf_filename = 'srtm_polska.pbf'

@@ -3,7 +3,7 @@ import os
 from osmapa.Map import Map
 import time
 
-version = "V2.00"
+version = "V2.01"
 src_db_url = "https://download.geofabrik.de/europe/poland-latest.osm.pbf"
 # Alternate URL: https://download.openstreetmap.fr/extracts/europe/poland-latest.osm.pbf
 polska_pbf_filename = 'poland-latest.osm.pbf'
