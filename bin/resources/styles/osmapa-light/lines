@@ -268,9 +268,10 @@ highway=living_street  [0x06 road_class=0 road_speed=1 resolution 22 ]
 
 #residential nieutwardzone
 
-#highway=residential & mkgmap:unpaved=1 {set mkgmap:no_name=yes} [0x0a resolution 20-20 continue]
-highway=residential & mkgmap:unpaved=1  {set mkgmap:no_name=yes} [0x0a resolution 22-22 continue]
-highway=residential & mkgmap:unpaved=1 [0x0a road_class=0 road_speed=1 resolution 23]
+highway=residential & tracktype=* & (surface=asphalt | surface=paved | surface=sett | surface=concrete | surface=concrete:lanes | surface=concrete:plates | surface=paving_stones  | surface=cobblestone  | surface=cobblestone:flattened  | surface=metal  | surface=wood) { set mkgmap:unpaved=0 }
+#highway=residential & mkgmap:unpaved=1 {set mkgmap:no_name=yes} [0x0f resolution 20-20 continue]
+highway=residential & mkgmap:unpaved=1  {set mkgmap:no_name=yes} [0x0f resolution 22-22 continue]
+highway=residential & mkgmap:unpaved=1 [0x0f road_class=0 road_speed=1 resolution 23]
 
 #residential utwardzone
 #highway=residential {set mkgmap:no_name=yes} [0x06 resolution 20-20 continue]
@@ -283,8 +284,9 @@ highway=residential  [0x06 road_class=0 road_speed=2 resolution 23]
 highway=minor & mkgmap:unpaved=1  [0x0a road_class=0 road_speed=1 resolution 22]
 highway=minor [0x06 road_class=0 road_speed=3 resolution 20]
 
-highway=unclassified & mkgmap:unpaved=1 {set mkgmap:no_name=yes} [0x0a resolution 22-22 continue]
-highway=unclassified & mkgmap:unpaved=1  [0x0a road_class=0 road_speed=1 resolution 23]
+highway=unclassified & tracktype=* & (surface=asphalt | surface=paved | surface=sett | surface=concrete | surface=concrete:lanes | surface=concrete:plates | surface=paving_stones  | surface=cobblestone  | surface=cobblestone:flattened  | surface=metal  | surface=wood) { set mkgmap:unpaved=0 }
+highway=unclassified & mkgmap:unpaved=1 {set mkgmap:no_name=yes} [0x0f resolution 22-22 continue]
+highway=unclassified & mkgmap:unpaved=1  [0x0f road_class=0 road_speed=1 resolution 23]
 
 highway=unclassified {set mkgmap:no_name=yes} [0x06 resolution 20-20 continue]
 highway=unclassified [0x06 road_class=0 road_speed=3 resolution 22]

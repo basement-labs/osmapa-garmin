@@ -1,0 +1,3 @@
+Directory holding boundary data for mkgmap.
+
+Boundary data can be created by the Map.generate_boundaries() or downloaded from http://osm.thkukuk.de/data/bounds-latest.zip
