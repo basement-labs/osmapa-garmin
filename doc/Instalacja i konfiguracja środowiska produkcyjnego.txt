@@ -1,0 +1,54 @@
+Instalacja i konfiguracja środowiska producyjnego map Garmin na serwerze Linux UBuntu
+=====================================================================================
+
+Andrzej Talarczyk <andrzej@talarczyk.com>
+
+
+WSTĘP 
+
+Niniejszy dokument opisuje jak zainstalować i skonfigurować środowisko produkcyjne map 
+Garmin na serwerze Linux Ubuntu.
+
+
+INSTALACJA WYMAGANYCH KOMPONENTÓW
+
+apt install zip
+apt install default-jre
+apt install osmctools
+apt install osmosis
+apt install nsis
+apt install apache2
+apt install git
+
+
+INSTALACJA środowiska
+
+W opisywanej konfiguracji instalacja odbywa się w katalogu domowym użytkownika "osmuser" /home/osmuser
+
+$ cd /home/osmuser
+$ git clone https://github.com/atalarczyk/osmapa-garmin.git
+$ mkdir osmapa-garmin-www
+$ cp -a osmapa-garmin/www/assets osmapa-garmin-www/
+$ cp osmapa-garmin/www/index.html osmapa-garmin-www/
+$ cd osmapa-garmin-www
+$ ln -s /home/osmuser/osmapa-garmin/products products
+$ chmod a+x /home/osmuser/osmapa-garmin/MakeMaps.sh 
+$ crontab -e 
+0 3 * * 1 /home/atalarczyk/osmapa-garmin/MakeMaps.sh > /dev/null
+
+$ sudo su 
+# mv /var/www/html /var/www/html_ORG
+# ln -s /home/osmuser/osmapa-garmin-www /var/www/html
+
+
+KONFIGURACJA 
+
+1. Wpisać do pliku osmapa-garmin/UpdateWebPage.py właściwą ścieżkę do katalogu, w którym jest zainstalowane środowisko, 
+   w poniższych liniach:
+
+   linia 6:  product_dir="/home/osmuser/osmapa-garmin/products",
+   linia 19: template_file="/home/osmuser/osmapa-garmin/www/TEMPLATE_index.html",
+   linia 20: target_file="/home/osmuser/osmapa-garmin-www/index.html")
+
+2. Wpisać do pliku osmapa-garmin/MakeMaps.sh właściwą ścieżkę do katalogu, w którym jest zainstalowane środowisko:
+   linia 3:  cd /home/osmuser/osmapa-garmin
