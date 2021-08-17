@@ -1,0 +1,4 @@
+.vscode
+__pycache__
+OSM/bounds/*.bnd
+tmp/*/
