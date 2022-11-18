@@ -7,7 +7,7 @@ from osmapa.Map import Map
 import time
 
 
-src_db_url = "http://download.openstreetmap.fr/extracts/europe-latest.osm.pbf"
+src_db_url = "https://download.geofabrik.de/europe-latest.osm.pbf"
 europe_pbf_filename = 'europe-latest.osm.pbf'
 
 version = "V2.02"
